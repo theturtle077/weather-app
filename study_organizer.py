@@ -72,13 +72,24 @@ def create_folder(folder,name):
 
 
 # Create a study note 
+# Create a study note
 def create_note(folder):
-    name = input("Enter the name of the note: ").lower()
-    content = input("Enter the content of the note: ")
-    new_note = Node(name, is_folder=False, parent=folder)
-    folder.add_child(new_note)
-    new_note.content = content
+  name = input("Enter the name of the note: ").lower()
+  print(
+      "Enter the content of the note (Type 'SAVE' on a new line when finished):"
+  )
 
+  lines = []
+  while True:
+    line = input()
+    if line == "SAVE":
+      break
+    lines.append(line)
+  content = "\n".join(lines)
+
+  new_note = Node(name, is_folder=False, parent=folder)
+  folder.add_child(new_note)
+  new_note.content = content
 
 # Make the current folder something different
 def navigate_to_folder():
